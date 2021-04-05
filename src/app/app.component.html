@@ -1,0 +1,42 @@
+
+
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <label>
+      <span>Search for a book</span>
+      
+      <input formControlName="inputctrl" type="text"  placeholder="Enter text">
+    </label>
+    
+    <button type="submit">Search</button>
+  </form>
+  <section>
+    <ul class="search-results" >
+      <li *ngFor="let book of this.booksInfo?.items;let i=index;trackBy: trackById">
+        <div id="bookshelf" class="bookshelf">
+          <figure>
+            <div class="cover" [id]="book.id">
+              <img  [src]="book?.volumeInfo?.imageLinks?.smallThumbnail" [alt]="book?.volumeInfo?.title">
+              <figcaption>
+                <ul class="info">
+                  <li style="font-size: 16px; font-weight:800">
+                    {{book?.volumeInfo?.title}}
+                  </li>
+                  <li style="font-size: 12px;">
+                    <span>by </span><p *ngFor="let author of book?.volumeInfo?.authors">{{author}}</p>
+                  </li>
+                  <li  style="font-size: 12px;">
+                    {{book?.volumeInfo?.publishedDate}}
+                  </li>
+                </ul>
+              </figcaption>
+             <img class="preview" src="../assets/outbound_black_24dp.svg" alt="">
+            </div>
+            <!-- <div>
+              <a [href]="book?.volumeInfo?.previewLink" target="_blank">Preview</a>
+            </div> -->
+          </figure>
+        </div>
+      </li>
+    </ul>
+  </section>
+ 
